@@ -66,6 +66,7 @@ class UserWelcomeForm extends ConfigFormBase
         $config->set('message', $form_state->getValue('message'));
         $config->set('displayMessage', $form_state->getValue('displayMessage'));
         $config->save();
+        // TODO: Narrowly scope the cache flush to only what is actually needed
         drupal_flush_all_caches();
         return parent::submitForm($form, $form_state);
     }
