@@ -27,13 +27,13 @@ class UserWelcomeForm extends ConfigFormBase
             '#type' => 'textfield',
             '#title' => $this->t('Message'),
             '#default_value' => $config->get('message'),
-            '#description' => 'When enabled, this message will be displayed to all users regardless of authentication status'
+            '#description' => 'A custom message to display to users'
         ];
         $form['displayMessage'] = [
             '#type' => 'checkbox',
-            '#title' => $this->t('Display message'),
+            '#title' => $this->t('Only show to logged-in users'),
             '#default_value' => $config->get('displayMessage'),
-            '#description' => 'When checked, the above message will display. If unchecked, only authenticated users will see their information'
+            '#description' => 'When checked, the above message will display only to authenticated users'
         ];
 
         return $form;
