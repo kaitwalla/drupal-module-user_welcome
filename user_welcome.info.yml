@@ -1,0 +1,6 @@
+name: User Welcome
+description: 'Adds greeting to sidebar for registered users, with custom welcome message'
+package: custom
+type: module
+core_version_requirement: ^9
+configure: user_welcome.form
