@@ -1,0 +1,7 @@
+user_welcome.form:
+  path: '/admin/config/custom/user_welcome'
+  defaults:
+    _form: '\Drupal\user_welcome\Form\UserWelcomeForm'
+    _title: 'User Welcome Settings'
+  requirements:
+    _permission: 'administer site configuration'
