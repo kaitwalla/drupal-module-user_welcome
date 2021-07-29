@@ -1,5 +1,7 @@
 <?php
 
+use Drupal\user_welcome\Form\UserWelcomeForm;
+
 /**
 * Implements hook_preprocess_region
 */
@@ -16,7 +18,10 @@ function user_welcome_preprocess_page(&$variables)
             $content .= 'Your last log in was ' . date('F jS, Y g:i a', $user->getLastLoginTime()) . '<br>';
             $content .= '<a href="/user/' . $user->id . '">Visit your profile</a>';
         }
-        
+        $config = Drupal::config(UserWelcomeForm::$CONFIG_NAME);
+        if ($config->get('displayMessage')) {
+            $content .= '<p>' . $config->get('message') . '</p>';
+        }
         $variables['page']['sidebar_first'][]['#markup'] = $content;
     }
 }

@@ -2,4 +2,4 @@ user_welcome.form:
   title: 'User Welcome Settings'
   description: 'Configure settings for the User Welcome module'
   route_name: user_welcome.form
-  parent: 'system.admin_config_custom'
+  parent: 'system.admin_config_system'

@@ -5,6 +5,7 @@
 
 namespace Drupal\user_welcome\Form;
 
+use Drupal;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 
@@ -18,9 +19,9 @@ class UserWelcomeForm extends ConfigFormBase
     /**
      * {@inheritdoc}
      */
-    public function buildForm(array $form, FormStateInterface $formState)
+    public function buildForm(array $form, FormStateInterface $form_state)
     {
-        $form = parent::buildForm($form, $formState);
+        $form = parent::buildForm($form, $form_state);
         $config = $this->config(self::$CONFIG_NAME);
         $form['message'] = [
             '#type' => 'textfield',
@@ -59,12 +60,13 @@ class UserWelcomeForm extends ConfigFormBase
     /**
     * {@inheritdoc}
     */
-    public function submitForm(array &$form, FormStateInterface $formState)
+    public function submitForm(array &$form, FormStateInterface $form_state)
     {
         $config = $this->config(self::$CONFIG_NAME);
-        $config->set('user_welcome.message', $formState->getValue('message'));
-        $config->set('user_welcome.displayMessage', $formState->getValue('displaymessage'));
+        $config->set('message', $form_state->getValue('message'));
+        $config->set('displayMessage', $form_state->getValue('displayMessage'));
         $config->save();
-        return parent::submitForm($form, $formState);
+        drupal_flush_all_caches();
+        return parent::submitForm($form, $form_state);
     }
 }
